@@ -10,6 +10,7 @@ namespace AwareMD.EntityLayer.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int PatientId { get; set; }
+        public Patient Patient { get; set; }
         public DateTime AppointmentTime { get; set; }
 
         [StringLength(200)]

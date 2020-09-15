@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,6 +16,7 @@ namespace AwareMD.EntityLayer.Models
 
         [StringLength(50)]
         public string LastName { get; set; }
-        public DateTime DateOfBirth { get; }
+        public DateTime DateOfBirth { get; set; }
+        public List<Appointment> Appointments { get; set; }
     }
 }
