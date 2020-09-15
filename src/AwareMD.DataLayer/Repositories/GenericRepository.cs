@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace AwareMD.BusinessLayer.Data
+namespace AwareMD.DataLayer.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
@@ -23,6 +23,11 @@ namespace AwareMD.BusinessLayer.Data
         public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
         {
             return _context.Set<T>().Where(expression);
+        }
+
+        public bool Exist(Expression<Func<T, bool>> expression)
+        {
+            return _context.Set<T>().Any(expression);
         }
 
         public List<T> GetAll()

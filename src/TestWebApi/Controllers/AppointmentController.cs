@@ -2,46 +2,136 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AwareMD.BusinessLayer;
+using AwareMD.DataLayer.Repositories;
+using AwareMD.EntityLayer.Models;
 using Microsoft.AspNetCore.Mvc;
+using TestWebApi.BindingModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TestWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/appointment")]
     [ApiController]
     public class AppointmentController : ControllerBase
     {
-        // GET: api/<AppointmentController>
+        private readonly IUnitOfWork _unitOfWork;
+
+        public AppointmentController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Appointment> Get()
         {
-            return new string[] { "value1", "value2" };
+            AppointmentLogic aptLogic = new AppointmentLogic(_unitOfWork);
+
+            return aptLogic.ReadAll();
         }
 
-        // GET api/<AppointmentController>/5
+        // GET api/appointment/1
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            AppointmentLogic aptLogic = new AppointmentLogic(_unitOfWork);
+
+            Appointment apt = aptLogic.ReadById(id);
+
+            if (apt != null)
+            {
+                return new JsonResult(apt);
+            }
+            else 
+            {
+                return NotFound();
+            }
         }
 
-        // POST api/<AppointmentController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromForm] AppointmentPostBM inputs)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            else
+            {
+                AppointmentLogic aptLogic = new AppointmentLogic(_unitOfWork);
+
+                Appointment apt;
+                inputs.ConvertTo(out apt);
+
+                try
+                {
+                    Appointment result = aptLogic.Create(apt);
+
+                    if (result != null)
+                    {
+                        return new JsonResult(result);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                } 
+                catch (Exception ex)
+                {
+                    return BadRequest(ex);
+                }
+            }
         }
 
-        // PUT api/<AppointmentController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut()]
+        public IActionResult Put([FromForm] AppointmentPutBM inputs)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            else
+            {
+                AppointmentLogic aptLogic = new AppointmentLogic(_unitOfWork);
+
+                try
+                {
+                    if (aptLogic.Update(inputs.Id, inputs.PatientId, inputs.AppointmentTime, inputs.Notes) > 0)
+                    {
+                        return Ok();
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex);
+                }
+            }
         }
 
-        // DELETE api/<AppointmentController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            AppointmentLogic aptLogic = new AppointmentLogic(_unitOfWork);
+
+            try
+            {
+                if (aptLogic.Delete(id) > 0)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

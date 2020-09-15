@@ -9,6 +9,7 @@ namespace AwareMD.DataLayer.Repositories
         T GetById(int id);
         List<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> expression);
+        bool Exist(Expression<Func<T, bool>> expression);
         void Add(T entity);
         void Remove(T entity);
         void Update(T entity);

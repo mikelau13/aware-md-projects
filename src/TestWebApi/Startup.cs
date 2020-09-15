@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AwareMD.BusinessLayer.Data;
+using AwareMD.DataLayer;
+using AwareMD.DataLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,7 @@ namespace TestWebApi
         {
             services.AddControllers();
             services.AddDbContext<AwareMDDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), assembly => assembly.MigrationsAssembly("TestWebApi")));
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

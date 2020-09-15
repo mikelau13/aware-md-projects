@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace AwareMD.BusinessLayer.Data
+namespace AwareMD.DataLayer
 {
     public class AwareMDDbContext : DbContext
     {
