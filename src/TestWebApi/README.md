@@ -1,6 +1,6 @@
 # TestWebApi
 
-Make sure [].NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) have been already installed.
+Make sure [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) have been already installed.
 
 To run this application, execute:
 
