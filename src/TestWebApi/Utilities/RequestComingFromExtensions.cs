@@ -8,7 +8,7 @@ namespace TestWebApi.Utilities
 {
     public static class RequestComingFromExtensions
     {
-        public static IApplicationBuilder UseRequestResponseLogging(this IApplicationBuilder builder)
+        public static IApplicationBuilder RequestComingFrom(this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<RequestComingFromMiddleware>();
         }

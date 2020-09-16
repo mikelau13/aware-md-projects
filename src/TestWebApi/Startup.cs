@@ -61,7 +61,7 @@ namespace TestWebApi
 
             app.UseAuthorization();
 
-            app.UseRequestResponseLogging();
+            app.RequestComingFrom();
 
             app.UseEndpoints(endpoints =>
             {
