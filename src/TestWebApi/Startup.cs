@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TestWebApi.Utilities;
 
 namespace TestWebApi
 {
@@ -59,6 +60,8 @@ namespace TestWebApi
             app.UseCors("awaremd");
 
             app.UseAuthorization();
+
+            app.UseRequestResponseLogging();
 
             app.UseEndpoints(endpoints =>
             {
