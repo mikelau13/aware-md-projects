@@ -50,7 +50,7 @@ namespace TestWebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromForm] AppointmentPostBM inputs)
+        public IActionResult Post(AppointmentPostBM inputs)
         {
             if (!ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace TestWebApi.Controllers
         }
 
         [HttpPut()]
-        public IActionResult Put([FromForm] AppointmentPutBM inputs)
+        public IActionResult Put(AppointmentPutBM inputs)
         {
             if (!ModelState.IsValid)
             {
