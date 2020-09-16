@@ -45,7 +45,7 @@ namespace TestWebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromForm] PatientPostBM inputs)
+        public IActionResult Post(PatientPostBM inputs)
         {
             if (!ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace TestWebApi.Controllers
         }
 
         [HttpPut()]
-        public IActionResult Put([FromForm] PatientPutBM inputs)
+        public IActionResult Put(PatientPutBM inputs)
         {
             if (!ModelState.IsValid)
             {

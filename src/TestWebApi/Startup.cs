@@ -31,6 +31,17 @@ namespace TestWebApi
             services.AddControllers();
             services.AddDbContext<AwareMDDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), assembly => assembly.MigrationsAssembly("TestWebApi")));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("awaremd", policy =>
+                {
+                    // allow Ajax calls to be made from https://localhost:3000 (AwareMD.WebClient)
+                    policy.WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +55,8 @@ namespace TestWebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("awaremd");
 
             app.UseAuthorization();
 
