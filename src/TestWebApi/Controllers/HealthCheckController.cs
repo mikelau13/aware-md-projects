@@ -14,7 +14,7 @@ namespace TestWebApi.Controllers
         [HttpGet]
         public string Index()
         {
-            return "succeed";
+            return "nice try";
         }
     }
 }
