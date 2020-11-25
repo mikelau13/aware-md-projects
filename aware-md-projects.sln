@@ -7,14 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWebApi", "src\TestWebAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4A39351B-C9E3-40E0-9DD0-4C7604F8D75C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwareMD.EntityLayer", "src\AwareMD.EntityLayer\AwareMD.EntityLayer.csproj", "{8594BA44-E270-45CC-991E-A999A9B9C424}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwareMD.EntityLayer", "src\AwareMD.EntityLayer\AwareMD.EntityLayer.csproj", "{8594BA44-E270-45CC-991E-A999A9B9C424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwareMD.DataLayer", "src\AwareMD.DataLayer\AwareMD.DataLayer.csproj", "{3BF9DBD1-9647-4F50-9200-374E3FBF0282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwareMD.DataLayer", "src\AwareMD.DataLayer\AwareMD.DataLayer.csproj", "{3BF9DBD1-9647-4F50-9200-374E3FBF0282}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwareMD.BusinessLayer", "src\AwareMD.BusinessLayer\AwareMD.BusinessLayer.csproj", "{B3CDB3AB-1A98-430D-BA60-F7D3905A2339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwareMD.BusinessLayer", "src\AwareMD.BusinessLayer\AwareMD.BusinessLayer.csproj", "{B3CDB3AB-1A98-430D-BA60-F7D3905A2339}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{297B3F82-4476-4439-B235-70514CAEC735}"
 	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
