@@ -32,15 +32,22 @@ namespace TestWebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Patient pat = _unitOfWork.Patients.GetById(id);
+            try
+            {
+                Patient pat = _unitOfWork.Patients.GetById(id);
 
-            if (pat != null)
-            {
-                return new JsonResult(pat);
+                if (pat != null)
+                {
+                    return new JsonResult(pat);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex);
             }
         }
 
